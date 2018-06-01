@@ -8,7 +8,6 @@ class TodoListController extends Controller
 {
     //test echo
     function main(){
-    	echo 'abcdefg';
-    	return view('main');
+    	return view('main.index');
     }
 }
