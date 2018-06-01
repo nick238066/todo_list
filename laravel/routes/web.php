@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('main',['as'=>'main.index','uses'=>'TodoListController@main']);
