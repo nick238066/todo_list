@@ -1,59 +1,33 @@
 @extends('layouts.master')
 @section('content')
 	<div style="margin:0px auto;">
-		<form class="form-horizontal">
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Focused</label>
-    <div class="col-sm-10">
-      <input class="form-control" id="focusedInput" type="text" value="Click to focus">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="disabledInput" class="col-sm-2 control-label">Disabled</label>
-    <div class="col-sm-10">
-      <input class="form-control" id="disabledInput" type="text" disabled>
-    </div>
-  </div>
-  <fieldset disabled>
-    <div class="form-group">
-      <label for="disabledTextInput" class="col-sm-2 control-label">Fieldset disabled</label>
-      <div class="col-sm-10">
-        <input type="text" id="disabledTextInput" class="form-control">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="disabledSelect" class="col-sm-2 control-label"></label>
-      <div class="col-sm-10">
-        <select id="disabledSelect" class="form-control">
-          <option>Disabled select</option>
-        </select>
-      </div>
-    </div>
-  </fieldset>
-  <div class="form-group has-success has-feedback">
-    <label class="col-sm-2 control-label" for="inputSuccess">
-    Input with success and icon</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputSuccess">
-      <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-    </div>
-  </div>
-  <div class="form-group has-warning has-feedback">
-    <label class="col-sm-2 control-label" for="inputWarning">
-    Input with warning and icon</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputWarning">
-      <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-    </div>
-  </div>
-  <div class="form-group has-error has-feedback">
-    <label class="col-sm-2 control-label" for="inputError">
-    Input with error and icon</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputError">
-      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-    </div>
-  </div>
-</form>
+		<form class="form-horizontal" action="{{ route('main.add') }}" method="post">
+			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">填寫人：</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="form_name" name="form_name" type="text" value="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">預計完成時間：</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="form_finish_time" name="form_finish_time" type="text" value="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">內容：</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" rows="5" id="form_content" name="form_content"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">備註：</label>
+				<div class="col-sm-10">
+					<input class="form-control" id="form_remark" name="form_remark" type="text" value="">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
 	</div>
 @endsection

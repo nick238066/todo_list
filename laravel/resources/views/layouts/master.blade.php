@@ -61,7 +61,7 @@
 </div>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <p>Copyright (C) 2018, Nick Hsieh</p>
+  	<p>Copyright (C) 2018, Nick Hsieh</p>
 </div>
 
 <script type="text/javascript">

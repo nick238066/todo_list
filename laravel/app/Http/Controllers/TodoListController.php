@@ -32,7 +32,14 @@ class TodoListController extends Controller
     }
 
     //新增事項
-    function add(){
+    function add(Request $request){
+
+		if(isset($request->form_name)&&!empty($request->form_name)){
+			echo $request->form_name;
+			//exit;
+		}
+
+
 		return view('main.add');
     }
 }
