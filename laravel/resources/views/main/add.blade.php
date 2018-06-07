@@ -1,5 +1,12 @@
 @extends('layouts.master')
 @section('content')
+	<style type="text/css">
+		.add_border{
+			border:1px solid #FF0000
+		}
+	</style>
+
+
 	<div class="container">
 		<form class="form-horizontal" id="add_data" action="{{ route('main.add') }}" method="post" onclick="return false;">
 			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -41,11 +48,11 @@
 				$(".add_data_text").each(function(){
 					console.log($(this).val());
 					var exp = $(this).val();
-					console.log(typeof(exp));
 					if(exp === null || exp==''){
-					    alert("is null");
-					    console.log('Y');
+					    $(this).addClass('add_border');
 					    send_commit=false;
+					}else{
+						$(this).removeClass('add_border');
 					}
 				});
 				

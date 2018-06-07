@@ -36,10 +36,18 @@ class TodoListController extends Controller
 
 		if(isset($request->form_name)&&!empty($request->form_name)){
 			echo $request->form_name;
+			//$controller = App::make('Controllers/TodoListController');
+
+			//$controller->add_action();
+			this->add_action();
 			//exit;
 		}
 
 
 		return view('main.add');
+    }
+
+    function add_action(){
+    	echo date("Y-m-d");
     }
 }
