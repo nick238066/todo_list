@@ -8,7 +8,7 @@
 
 
 	<div class="container">
-		<form class="form-horizontal" id="add_data" action="{{ route('main.add') }}" method="post" onclick="return false;">
+		<form class="form-horizontal" id="add_data" action="{{ route('main.add_action') }}" method="post" onclick="return false;">
 			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 			<div class="form-group">
 				<label class="col-sm-2 control-label">填寫人：</label>
@@ -46,7 +46,7 @@
 			$("#click_submit").click(function(){
 				var send_commit=true;
 				$(".add_data_text").each(function(){
-					console.log($(this).val());
+					// console.log($(this).val());
 					var exp = $(this).val();
 					if(exp === null || exp==''){
 					    $(this).addClass('add_border');

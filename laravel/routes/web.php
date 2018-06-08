@@ -31,7 +31,6 @@ Route::get('process',['as'=>'main.process','uses'=>'TodoListController@process']
 Route::get('delete',['as'=>'main.delete','uses'=>'TodoListController@delete']);
 
 //新增事項
-// Route::get('add',['as'=>'main.add','uses'=>'TodoListController@add']);
-Route::match(['get', 'post'], 'add', ['as'=>'main.add','uses'=>'TodoListController@add']);
-// Route::post('add', ['as'=>'main.add','uses'=>'TodoListController@add']);
+Route::get('add',['as'=>'main.add','uses'=>'TodoListController@add']);
+
 

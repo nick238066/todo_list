@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Models\Post;
 
 class TodoListController extends Controller
 {
+
+	protected $post;
+
+	public function __construct(Post $post){
+		$this->post = $post;
+		//dd($this->post);
+	}
+
+
     //全部
     function main(){
     	return view('main.index');
@@ -23,7 +34,13 @@ class TodoListController extends Controller
 
     //待處理
     function process(){
-		return view('main.process');
+    	$data = array();
+
+    	//取得待處理資料
+    	$post = new post;
+    	$data['post'] = $post->where('status','=',0)->get();
+    	//dd($data);
+		return view('main.process',$data);
     }
 
     //已刪除
@@ -32,22 +49,21 @@ class TodoListController extends Controller
     }
 
     //新增事項
-    function add(Request $request){
-
-		if(isset($request->form_name)&&!empty($request->form_name)){
-			echo $request->form_name;
-			//$controller = App::make('Controllers/TodoListController');
-
-			//$controller->add_action();
-			this->add_action();
-			//exit;
-		}
-
-
+    function add(){
 		return view('main.add');
     }
 
-    function add_action(){
-    	echo date("Y-m-d");
+    //新增事項-action
+    function add_action(Request $request){
+
+    	$post = new post;
+    	$post->write_name=$request->form_name;
+    	$post->finish_time=$request->form_finish_time;
+    	$post->content=urlencode($request->form_content);
+    	$post->remark=$request->form_remark;
+    	$post->save();
+
+    	// return redirect()->back();
+    	return redirect()->route('main.process');	//新增完成後導回Process
     }
 }
