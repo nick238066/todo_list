@@ -19,17 +19,53 @@ class TodoListController extends Controller
 
     //全部
     function main(){
-    	return view('main.index');
+        $data = array();
+        //取得待處理資料
+        $post = new post;
+        $data['post'] = $post->get();
+        $data['post']->map(function($post){
+            //解析url
+            $post->content=urldecode($post->content);
+            // $a = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod";
+            $post->content_min=str_limit($post->content,50,'...');
+            // $post->content=str_limit($a,50,'...');
+        });
+        //dd($data);
+    	return view('main.index',$data);
     }
 
     //已完成
     function done(){
-    	return view('main.done');
+        $data = array();
+        //取得待處理資料
+        $post = new post;
+        $data['post'] = $post->where('status','=',2)->get();
+        $data['post']->map(function($post){
+            //解析url
+            $post->content=urldecode($post->content);
+            // $a = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod";
+            $post->content_min=str_limit($post->content,50,'...');
+            // $post->content=str_limit($a,50,'...');
+        });
+        //dd($data);
+    	return view('main.done',$data);
     }
 
     //處理中
     function processing(){
-		return view('main.processing');
+        $data = array();
+        //取得待處理資料
+        $post = new post;
+        $data['post'] = $post->where('status','=',1)->get();
+        $data['post']->map(function($post){
+            //解析url
+            $post->content=urldecode($post->content);
+            // $a = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod";
+            $post->content_min=str_limit($post->content,50,'...');
+            // $post->content=str_limit($a,50,'...');
+        });
+        //dd($data);
+		return view('main.processing',$data);
     }
 
     //待處理
@@ -51,7 +87,19 @@ class TodoListController extends Controller
 
     //已刪除
     function delete(){
-		return view('main.delete');
+        $data = array();
+        //取得待處理資料
+        $post = new post;
+        $data['post'] = $post->where('status','=',9)->get();
+        $data['post']->map(function($post){
+            //解析url
+            $post->content=urldecode($post->content);
+            // $a = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod";
+            $post->content_min=str_limit($post->content,50,'...');
+            // $post->content=str_limit($a,50,'...');
+        });
+        //dd($data);
+		return view('main.delete',$data);
     }
 
     //新增事項
@@ -80,7 +128,8 @@ class TodoListController extends Controller
     	$post = post::find($request->data_id);
     	$post->finish_time=$request->form_finish_time;
     	$post->content=urlencode($request->form_content);	//轉url編碼
-    	$post->remark=$request->form_remark;
+        $post->remark=$request->form_remark;
+    	$post->status=$request->status;
 		$post->save();
 
     	// return redirect()->back();
