@@ -20,4 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //新增事項 action
 Route::post('add_action', ['as'=>'main.add_action','uses'=>'TodoListController@add_action']);
 
+//更新事項 action
+Route::post('update_action', ['as'=>'main.update_action','uses'=>'TodoListController@update_action']);
+
 

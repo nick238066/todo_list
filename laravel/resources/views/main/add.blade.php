@@ -1,29 +1,22 @@
 @extends('layouts.master')
 @section('content')
-	<style type="text/css">
-		.add_border{
-			border:1px solid #FF0000
-		}
-	</style>
-
-
 	<div class="container">
-		<form class="form-horizontal" id="add_data" action="{{ route('main.add_action') }}" method="post" onclick="return false;">
+		<form class="form-horizontal" id="add_data" action="{{ route('main.add_action') }}" method="post" onclick="return false;" autocomplete="off">
 			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 			<div class="form-group">
-				<label class="col-sm-2 control-label">填寫人：</label>
+				<label class="col-sm-2 control-label"><span class="text_red">*</span>填寫人：</label>
 				<div class="col-sm-10">
 					<input class="form-control add_data_text" id="form_name" name="form_name" type="text" value="">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">預計完成時間：</label>
+				<label class="col-sm-2 control-label"><span class="text_red">*</span>預計完成時間：</label>
 				<div class="col-sm-10">
 					<input class="form-control add_data_text" id="form_finish_time" name="form_finish_time" type="text" value="">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">內容：</label>
+				<label class="col-sm-2 control-label"><span class="text_red">*</span>內容：</label>
 				<div class="col-sm-10">
 					<textarea class="form-control add_data_text" rows="5" id="form_content" name="form_content"></textarea>
 				</div>
@@ -31,7 +24,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">備註：</label>
 				<div class="col-sm-10">
-					<input class="form-control add_data_text" id="form_remark" name="form_remark" type="text" value="">
+					<input class="form-control" id="form_remark" name="form_remark" type="text" value="">
 				</div>
 			</div>
 			<div class="pull-right">
@@ -59,6 +52,11 @@
 				if(send_commit){
 					$("#add_data").submit();
 				}
+			});
+
+			$( "#form_finish_time" ).datepicker({
+				dateFormat:"yy-mm-dd",
+				minDate:"-0"
 			});
 		});
 
