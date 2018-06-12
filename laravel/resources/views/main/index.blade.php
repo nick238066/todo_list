@@ -1,13 +1,20 @@
 @extends('layouts.master')
 @section('content')
+	<?php $post_status = array(
+			'0'=>'待處理',
+			'1'=>'處理中',
+			'2'=>'已完成',
+			'9'=>'已刪除',
+		);?>
 	<div style="width:70%;margin:0px auto;">
 		<table id="table_id" class="display">
 			<thead>
 				<tr>
 					<th style="width:10%">項次</th>
-					<th style="width:50%">內容</th>
+					<th style="width:45%">內容</th>
 					<th style="width:15%">預計完成時間</th>
-					<th style="width:15%">填寫人</th>
+					<th style="width:10%">狀態</th>
+					<th style="width:10%">填寫人</th>
 					<th style="width:10%">詳情</th>
 				</tr>
 			</thead>
@@ -18,6 +25,7 @@
 						<td class="align_center"><?php echo $i?></td>
 						<td>{{$list->content_min}}</td>
 						<td class="align_center">{{$list->finish_time}}</td>
+						<td class="align_center">{{$post_status[$list->status]}}</td>
 						<td class="align_center">{{$list->write_name}}</td>
 						<td class="align_center"><input type="button" class="load_detail" data-id="{{$list->id}}" data-toggle="modal" data-target="#myModal" value="查看"></td>
 					</tr>

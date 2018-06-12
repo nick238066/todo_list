@@ -20,6 +20,7 @@ class TodoListController extends Controller
     //全部
     function main(){
         $data = array();
+        $data['navbar_type']="index";
         //取得待處理資料
         $post = new post;
         $data['post'] = $post->get();
@@ -37,6 +38,7 @@ class TodoListController extends Controller
     //已完成
     function done(){
         $data = array();
+        $data['navbar_type']="done";
         //取得待處理資料
         $post = new post;
         $data['post'] = $post->where('status','=',2)->get();
@@ -54,6 +56,7 @@ class TodoListController extends Controller
     //處理中
     function processing(){
         $data = array();
+        $data['navbar_type']="processing";
         //取得待處理資料
         $post = new post;
         $data['post'] = $post->where('status','=',1)->get();
@@ -71,6 +74,7 @@ class TodoListController extends Controller
     //待處理
     function process(){
     	$data = array();
+    	$data['navbar_type']="process";
     	//取得待處理資料
     	$post = new post;
     	$data['post'] = $post->where('status','=',0)->get();
@@ -88,6 +92,7 @@ class TodoListController extends Controller
     //已刪除
     function delete(){
         $data = array();
+        $data['navbar_type']="delete";
         //取得待處理資料
         $post = new post;
         $data['post'] = $post->where('status','=',9)->get();
@@ -104,7 +109,9 @@ class TodoListController extends Controller
 
     //新增事項
     function add(){
-		return view('main.add');
+    	$data = array();
+        $data['navbar_type']="add";
+		return view('main.add',$data);
     }
 
     //新增事項-action

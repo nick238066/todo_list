@@ -43,23 +43,26 @@
 
 	<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark"> -->
 	<nav class="navbar navbar-inverse">
-		<div class="navbar-header">
+		<!-- <div class="navbar-header">
 			<a class="navbar-brand" href="{{ route('main.index') }}">全部</a>
-		</div>
+		</div> -->
 		<ul class="nav navbar-nav">
-			<li class="nav-item">
+			<li id="index" class="nav-item">
+				<a href="{{ route('main.index') }}">全部</a>
+			</li>
+			<li id="done" class="nav-item">
 				<a href="{{ route('main.done') }}">已完成</a>
 			</li>
-			<li class="nav-item">
+			<li id="processing" class="nav-item">
 				<a href="{{ route('main.processing') }}">處理中</a>
 			</li> 
-			<li class="nav-item">
+			<li id="process" class="nav-item">
 				<a href="{{ route('main.process') }}">待處理</a>
 			</li> 
-			<li class="nav-item">
+			<li id="delete" class="nav-item">
 				<a href="{{ route('main.delete') }}">已刪除</a>
 			</li>
-			<li class="nav-item">
+			<li id="add" class="nav-item">
 				<a href="{{ route('main.add') }}">新增事項</a>
 			</li>    
 		</ul>
@@ -81,6 +84,8 @@
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
 	});
+	$(".nav li").removeClass('active');
+	$("#<?php echo $navbar_type?>").addClass('active');
 </script>
 
 </body>
